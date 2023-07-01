@@ -11,7 +11,7 @@ const { createApp } = Vue
         stock:0,
         precio:0,
         imagen:"",
-        url:'http://localhost:5000/remera/'+id,
+        url:'http://localhost:5000/remera'+id,
        }  
     },
     methods: {

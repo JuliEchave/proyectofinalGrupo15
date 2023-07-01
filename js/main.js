@@ -1,4 +1,4 @@
-document.getElementById("header").innerHTML=` <nav class="navbar navbar-expand-sm navbar-light bg-light">
+document.getElementById("header").innerHTML=` <nav class="navbar navbar-expand-sm navbar-light bg-info bg-opacity-25">
 <div class="container">
   <a class="navbar-brand" href="productos.html">Pepito</a>
   <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
