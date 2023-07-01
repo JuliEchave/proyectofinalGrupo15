@@ -12,7 +12,7 @@
     </header>
     <main>
         <div id="app" class="container">
-            <h1>Productos</h1>
+            <h1>Stock de remeras</h1>
             <br>
             <a  class="btn btn-primary" href="producto_nuevo.html">Nuevo</a>
             <br><br>
@@ -30,25 +30,26 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Precio</th>
+                                    <th scope="col">Modelo</th>
                                     <th scope="col">Stock</th>
+                                    <th scope="col">Precio</th>
                                     <th scope="col">Imagen</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class=""  v-for="producto in productos">
-                                    <td scope="row">{{producto.id}}</td>
-                                    <td>{{producto.nombre}}</td>
-                                    <td>{{producto.precio}}</td>
-                                    <td>{{producto.stock}}</td>
+                                <tr class=""  v-for="remera in remeras">
+                                    <td scope="row">{{remera.id}}</td>
+                                    <td>{{remera.modelo}}</td>
+                                    <td>{{remera.talle}}</td> 
+                                    <td>{{remera.stock}}</td>
+                                    <td>{{remera.precio}}</td>
                                     <td>
-                                        <img width="60"  :src="producto.imagen" :alt="producto.nombre">
+                                        <img width="60"  :src="remera.imagen" :alt="remera.modelo">
                                     </td>
                                     <td>
-                    			<a class="btn btn-primary" :href="'producto_update.html?id='+ producto.id" >Editar</a>
-                                      <button type="button" class="btn btn-danger" v-on:click="eliminar(producto.id)" >Eliminar</button>
+                    			<a class="btn btn-primary" :href="'producto_update.html?id='+ remera.id" >Editar</a>
+                                      <button type="button" class="btn btn-danger" v-on:click="eliminar(remera.id)" >Eliminar</button>
                                     </td>
                                 </tr>
                             </tbody>

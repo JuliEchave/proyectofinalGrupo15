@@ -16,16 +16,18 @@ ma=Marshmallow(app)   #crea el objeto ma de de la clase Marshmallow
 
 
 # defino la tabla
-class Producto(db.Model):   # la clase Producto hereda de db.Model    
+class Remera(db.Model):   # la clase Producto hereda de db.Model    
     id=db.Column(db.Integer, primary_key=True)   #define los campos de la tabla
-    nombre=db.Column(db.String(100))
-    precio=db.Column(db.Integer)
+    modelo=db.Column(db.String(100))
+    talle=db.Column(db.String(10))
     stock=db.Column(db.Integer)
+    precio=db.Column(db.Integer)
     imagen=db.Column(db.String(400))
-    def __init__(self,nombre,precio,stock,imagen):   #crea el  constructor de la clase
-        self.nombre=nombre   # no hace falta el id porque lo crea sola mysql por ser auto_incremento
-        self.precio=precio
+    def __init__(self,modelo,talle,stock,precio,imagen):   #crea el  constructor de la clase
+        self.modelo=modelo  # no hace falta el id porque lo crea sola mysql por ser auto_incremento
+        self.talle=talle
         self.stock=stock
+        self.precio=precio
         self.imagen=imagen
 
 
@@ -39,69 +41,71 @@ class Producto(db.Model):   # la clase Producto hereda de db.Model
 with app.app_context():
     db.create_all()  # aqui crea todas las tablas
 #  ************************************************************
-class ProductoSchema(ma.Schema):
+class RemeraSchema(ma.Schema):
     class Meta:
-        fields=('id','nombre','precio','stock','imagen')
+        fields=('id','modelo','talle','stock','precio','imagen')
 
 
 
 
-producto_schema=ProductoSchema()            # El objeto producto_schema es para traer un producto
-productos_schema=ProductoSchema(many=True)  # El objeto productos_schema es para traer multiples registros de producto
+remera_schema=RemeraSchema()            # El objeto producto_schema es para traer un producto
+remeras_schema=RemeraSchema(many=True)  # El objeto productos_schema es para traer multiples registros de producto
 
 
 # crea los endpoint o rutas (json)
-@app.route('/productos',methods=['GET'])
-def get_Productos():
-    all_productos=Producto.query.all()         # el metodo query.all() lo hereda de db.Model
-    result=productos_schema.dump(all_productos)  # el metodo dump() lo hereda de ma.schema y
+@app.route('/remeras',methods=['GET'])
+def get_Remeras():
+    all_remeras=Remera.query.all()         # el metodo query.all() lo hereda de db.Model
+    result=remeras_schema.dump(all_remeras)  # el metodo dump() lo hereda de ma.schema y
                                                  # trae todos los registros de la tabla
     return jsonify(result)                       # retorna un JSON de todos los registros de la tabla
 
 
 
 
-@app.route('/productos/<id>',methods=['GET'])
+@app.route('/remeras/<id>',methods=['GET'])
 def get_producto(id):
-    producto=Producto.query.get(id)
-    return producto_schema.jsonify(producto)   # retorna el JSON de un producto recibido como parametro
+    remera=Remera.query.get(id)
+    return remera_schema.jsonify(remera)   # retorna el JSON de un producto recibido como parametro
 
 
 
 
-@app.route('/productos/<id>',methods=['DELETE'])
-def delete_producto(id):
-    producto=Producto.query.get(id)
-    db.session.delete(producto)
+@app.route('/remeras/<id>',methods=['DELETE'])
+def delete_remeras(id):
+    remera=remera.query.get(id)
+    db.session.delete(remera)
     db.session.commit()
-    return producto_schema.jsonify(producto)   # me devuelve un json con el registro eliminado
+    return remera_schema.jsonify(remera)   # me devuelve un json con el registro eliminado
 
 
-@app.route('/productos', methods=['POST']) # crea ruta o endpoint
-def create_producto():
+@app.route('/remeras', methods=['POST']) # crea ruta o endpoint
+def create_remera():
     #print(request.json)  # request.json contiene el json que envio el cliente
-    nombre=request.json['nombre']
+    modelo=request.json['modelo']
+    talle=request.json['talle']
+    stock=request.json['stock'] 
     precio=request.json['precio']
-    stock=request.json['stock']
     imagen=request.json['imagen']
-    new_producto=Producto(nombre,precio,stock,imagen)
-    db.session.add(new_producto)
+    new_remera=Remera(modelo,talle,stock,precio,imagen)
+    db.session.add(new_remera)
     db.session.commit()
-    return producto_schema.jsonify(new_producto)
+    return remera_schema.jsonify(new_remera)
 
 
-@app.route('/productos/<id>' ,methods=['PUT'])
-def update_producto(id):
-    producto=Producto.query.get(id)
+@app.route('/remeras/<id>' ,methods=['PUT'])
+def update_remeras(id):
+    producto=Remera.query.get(id)
  
-    producto.nombre=request.json['nombre']
-    producto.precio=request.json['precio']
-    producto.stock=request.json['stock']
-    producto.imagen=request.json['imagen']
+    remera.modelo=request.json['modelo']
+    remera.talle=request.json['talle']
+    remera.stock=request.json['stock']
+    remera.precio=request.json['precio']
+    remera.imagen=request.json['imagen']
 
 
     db.session.commit()
-    return producto_schema.jsonify(producto)
+    return remera_schema.jsonify(producto)
  
 
 

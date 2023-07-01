@@ -3,7 +3,7 @@ const { createApp } = Vue
     data() {
       return {
         productos:[],
-        url:'http://localhost:5000/productos', 
+        url:'http://localhost:5500/productos', 
         error:false,
         cargando:true,
         /*atributos para el guardar los valores del formulario */
