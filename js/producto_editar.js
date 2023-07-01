@@ -6,11 +6,12 @@ const { createApp } = Vue
     data() {
       return {
         id:0,
-        nombre:"",
-        imagen:"",
+        modelo:"",
+        talle:"",
         stock:0,
         precio:0,
-        url:'http://localhost:5000/productos/'+id,
+        imagen:"",
+        url:'http://localhost:5000/remera/'+id,
        }  
     },
     methods: {
@@ -20,10 +21,11 @@ const { createApp } = Vue
                 .then(data => {
                     console.log(data)
                     this.id=data.id
-                    this.nombre = data.nombre;
-                    this.imagen=data.imagen
-                    this.stock=data.stock
-                    this.precio=data.precio                    
+                    this.modelo= data.modelo;
+                    this.talle= data.talle,
+                    this.stock=data.stock,
+                    this.precio=data.precio,
+                    this.imagen=data.imagen                    
                 })
                 .catch(err => {
                     console.error(err);
@@ -31,14 +33,15 @@ const { createApp } = Vue
                 })
         },
         modificar() {
-            let producto = {
-                nombre:this.nombre,
-                precio: this.precio,
+            let remera = {
+                modelo:this.modelo,
+                talle:this.talle,
                 stock: this.stock,
+                precio: this.precio,
                 imagen:this.imagen
             }
             var options = {
-                body: JSON.stringify(producto),
+                body: JSON.stringify(remera),
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 redirect: 'follow'

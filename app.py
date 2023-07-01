@@ -64,7 +64,7 @@ def get_Remeras():
 
 
 @app.route('/remeras/<id>',methods=['GET'])
-def get_producto(id):
+def get_remera(id):
     remera=Remera.query.get(id)
     return remera_schema.jsonify(remera)   # retorna el JSON de un producto recibido como parametro
 
@@ -95,7 +95,7 @@ def create_remera():
 
 @app.route('/remeras/<id>' ,methods=['PUT'])
 def update_remeras(id):
-    producto=Remera.query.get(id)
+    remera=Remera.query.get(id)
  
     remera.modelo=request.json['modelo']
     remera.talle=request.json['talle']
@@ -105,7 +105,7 @@ def update_remeras(id):
 
 
     db.session.commit()
-    return remera_schema.jsonify(producto)
+    return remera_schema.jsonify(remera)
  
 
 
