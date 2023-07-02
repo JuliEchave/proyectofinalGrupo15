@@ -2,7 +2,7 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        remeras:[],
+        Remeras:[],
         url:'http://127.0.0.1:5000/remera', 
         error:false,
         cargando:true,
@@ -21,7 +21,7 @@ const { createApp } = Vue
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    this.remera=data;
+                    this.remera= data;
                     this.cargando=false
                 })
                 .catch(err => {
@@ -35,7 +35,7 @@ const { createApp } = Vue
                 method: 'DELETE',
             }
             fetch(url, options)
-                .then(res => res.json()) // or res.json() text
+                .then(res => res.text()) // or res.json() text
                 .then(res => {
                     location.reload();
                 })
