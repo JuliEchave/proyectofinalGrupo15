@@ -8,7 +8,7 @@ CORS(app) #modulo cors es para que me permita acceder desde el frontend al backe
 
 # configuro la base de datos, con el nombre el usuario y la clave
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user:password@localhost/proyecto'
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:@localhost/proyecto'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root@localhost/proyecto'
 # URI de la BBDD                          driver de la BD  user:clave@URLBBDD/nombreBBDD
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #none
 db= SQLAlchemy(app)   #crea el objeto db de la clase SQLAlquemy
@@ -53,7 +53,7 @@ remeras_schema=RemeraSchema(many=True)  # El objeto productos_schema es para tra
 
 
 # crea los endpoint o rutas (json)
-@app.route('/remeras',methods=['GET'])
+@app.route('/remera',methods=['GET'])
 def get_Remeras():
     all_remeras=Remera.query.all()         # el metodo query.all() lo hereda de db.Model
     result=remeras_schema.dump(all_remeras)  # el metodo dump() lo hereda de ma.schema y
@@ -63,7 +63,7 @@ def get_Remeras():
 
 
 
-@app.route('/remeras/<id>',methods=['GET'])
+@app.route('/remera/<id>',methods=['GET'])      
 def get_remera(id):
     remera=Remera.query.get(id)
     return remera_schema.jsonify(remera)   # retorna el JSON de un producto recibido como parametro
@@ -71,7 +71,7 @@ def get_remera(id):
 
 
 
-@app.route('/remeras/<id>',methods=['DELETE'])
+@app.route('/remera/<id>',methods=['DELETE'])
 def delete_remeras(id):
     remera=remera.query.get(id)
     db.session.delete(remera)
@@ -79,7 +79,7 @@ def delete_remeras(id):
     return remera_schema.jsonify(remera)   # me devuelve un json con el registro eliminado
 
 
-@app.route('/remeras', methods=['POST']) # crea ruta o endpoint
+@app.route('/remera', methods=['POST']) # crea ruta o endpoint
 def create_remera():
     #print(request.json)  # request.json contiene el json que envio el cliente
     modelo=request.json['modelo']
@@ -93,7 +93,7 @@ def create_remera():
     return remera_schema.jsonify(new_remera)
 
 
-@app.route('/remeras/<id>' ,methods=['PUT'])
+@app.route('/remera/<id>' ,methods=['PUT'])
 def update_remeras(id):
     remera=Remera.query.get(id)
  

@@ -2,16 +2,18 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        productos:[],
-        url:'http://localhost:5500/productos', 
+        remeras:[],
+        url:'http://127.0.0.1:5000/remera', 
         error:false,
         cargando:true,
         /*atributos para el guardar los valores del formulario */
         id:0,
-        nombre:"", 
-        imagen:"",
+        modelo:"",
+        talle:"",
         stock:0,
-        precio:0,
+        precio:0, 
+        imagen:"",
+        
     }  
     },
     methods: {
@@ -19,7 +21,7 @@ const { createApp } = Vue
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    this.productos = data;
+                    this.remera=data;
                     this.cargando=false
                 })
                 .catch(err => {
@@ -27,26 +29,27 @@ const { createApp } = Vue
                     this.error=true              
                 })
         },
-        eliminar(producto) {
-            const url = this.url+'/' + producto;
+        eliminar(remera) {
+            const url = this.url+'/' + remera;
             var options = {
                 method: 'DELETE',
             }
             fetch(url, options)
-                .then(res => res.text()) // or res.json()
+                .then(res => res.json()) // or res.json() text
                 .then(res => {
                     location.reload();
                 })
         },
         grabar(){
-            let producto = {
-                nombre:this.nombre,
+            let remera = {
+                modelo:this.modelo,
+                talle:this.talle,   
+                stock: this.stock, 
                 precio: this.precio,
-                stock: this.stock,
                 imagen:this.imagen
             }
             var options = {
-                body:JSON.stringify(producto),
+                body:JSON.stringify(remera),
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 redirect: 'follow'
@@ -58,7 +61,7 @@ const { createApp } = Vue
                 })
                 .catch(err => {
                     console.error(err);
-                    alert("Error al Grabarr")
+                    alert("Error al Grabar")
                 })      
         }
     },
