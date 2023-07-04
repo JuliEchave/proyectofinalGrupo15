@@ -83,3 +83,6 @@ def update_remeras(id):
 
     db.session.commit()
     return remera_schema.jsonify(remera)
+
+if __name__=='__main__':  
+    app.run(debug=True, port=5000)    # ejecuta el servidor Flask en el puerto 5000
