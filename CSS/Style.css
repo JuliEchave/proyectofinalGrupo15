@@ -1,0 +1,125 @@
+html {
+  background: linear-gradient(rgb(194, 88, 194), blue);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 5px;
+}
+
+header {
+  margin-bottom: 5px;
+  font-family: "Source Serif Pro", serif;
+  height: auto;
+}
+
+header a {
+  font-family: "Source Serif Pro", serif;
+  text-decoration: none;
+  font-weight: 300;
+  color: black;
+  background-color: rgb(188, 195, 234);
+  border-radius: 5%;
+}
+
+h1 {
+  font-family: "Source Serif Pro", serif;
+  text-align: center;
+  font-size: 10vh;
+}
+
+main {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px
+}
+
+p{
+  font-family: 'Source Serif Pro', serif;
+  font-weight: 400;
+  color: rgb(188, 195, 234);
+  text-align: center;
+
+}
+
+footer {
+  height: 15%;
+  margin-top: 5px;
+}
+h2 {
+  width: 100%;
+  text-align: center;
+  color: rgb(116, 116, 116);
+  font-family: "Source Serif Pro", serif;
+}
+h3 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: "Source Serif Pro", serif;
+}
+
+h4 {
+  font-size: 5vh;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: "Source Serif Pro", serif;
+}
+.redes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-brands {
+  color: aliceblue;
+  background-color: rgb(25, 153, 216);
+  border-radius: 50%;
+}
+.iconos:hover {
+  transform: scale(1.2);
+}
+
+.slider-frame{
+  width: 1000px;
+  height: auto;
+  margin: 50px auto 0;
+  overflow: hidden;
+
+}
+
+.slider-frame ul{
+  display: flex;
+  padding: 0;
+  width: 200%;
+
+  animation: slide 10s infinite ease-in-out;
+}
+
+.slider-frame li{
+  list-style: none;
+  width: 100%
+}
+
+.slider-frame img{
+  width: 100%;
+  height: 500px
+}
+
+@keyframes slide{
+  0%{margin-left: 0%;}
+  45%{margin-left: 0%;}
+
+  50%{margin-left: -100%;}
+  95%{margin-left: -100%;}
+
+}
+label{
+  display: inline-block;
+  width: 100px;
+}
+container.app {
+  border: 1px solid #000;
+}
