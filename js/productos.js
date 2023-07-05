@@ -20,6 +20,7 @@ createApp({
       fetch(url)
         .then(response => response.json())
         .then(data => {
+          console.log(data)
           this.Remeras = data;
           this.cargando = false;
         })
@@ -32,17 +33,37 @@ createApp({
       const url = this.url + '/' + remera;
       var options = {
         method: 'DELETE',
-      };
+      }
+
+    
       fetch(url, options)
         .then(res => res.text())
         .then(res => {
           location.reload();
         })
+
+      
         .catch(err => {
           console.error(err);
           alert("Error al eliminar");
         });
+
+      
     },
+
+
+    confirmarEliminar(remera)
+    {
+      var respuesta =confirm("¿Estas seguro que deseas eliminar este articulo?");
+      if (respuesta == true)
+      {
+        return this.eliminar(remera);
+      }
+      else{
+        return false;
+      }
+    },
+
     grabar() {
       let remera = {
         modelo: this.modelo,
@@ -72,3 +93,4 @@ createApp({
     this.fetchData(this.url);
   },
 }).mount('#app');
+
