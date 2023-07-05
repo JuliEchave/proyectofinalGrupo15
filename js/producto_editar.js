@@ -57,6 +57,18 @@ createApp({
           alert("Error al Modificar");
         });
     },
+
+    confirmarModificar(remera)
+    {
+      var respuesta =confirm("¿Estas seguro que deseas modificar este articulo?");
+      if (respuesta == true)
+      {
+        return this.modificar(remera);
+      }
+      else{
+        return false;
+      }
+    },
   },
   created() {
     this.fetchData(this.url);
